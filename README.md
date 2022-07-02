@@ -10,3 +10,4 @@ Minimum Viable Product (MVP) definition.
 Destination suggestions, Destination forecast, Images, Entertainment Auth0
 
 ![Wireframe](Wireframe (1).png "Wireframe")
+![Data Modeling](Data Modeling.png "Data Modeling")
