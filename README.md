@@ -12,7 +12,7 @@ Destination suggestions, Destination forecast, Images, Entertainment Auth0
 
 ### Wireframe
 
-![Wireframe](Wireframe.png "Wireframe")
+![Wireframe](/images/readme/Wireframe.png "Wireframe")
 
 <br/>
 
@@ -93,7 +93,7 @@ Destination suggestions, Destination forecast, Images, Entertainment Auth0
 
 ### Data and Domain Modeling
 
-![Data Modeling](DataModeling.png "Data Modeling")
+![Data Modeling](/images/readme/DataModeling.png "Data Modeling")
 
 **UML** (database schema included)
 
@@ -107,5 +107,3 @@ Destination suggestions, Destination forecast, Images, Entertainment Auth0
   - ticketmaster API
 - Weatherbit.io
   - weather API
-
-
