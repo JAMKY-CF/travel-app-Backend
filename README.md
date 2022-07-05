@@ -11,10 +11,10 @@ Destination suggestions, Destination forecast, Images, Entertainment Auth0
 
 **Wireframe**
 
-![Wireframe](Wireframe.png "Wireframe")
+![Wireframe](/images/readme/Wireframe.png "Wireframe")
 
 <br/>
 
 **Data Modeling**
 
-![Data Modeling](DataModeling.png "Data Modeling")
+![Data Modeling](/images/readme/DataModeling.png "Data Modeling")
