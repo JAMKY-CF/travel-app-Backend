@@ -2,11 +2,13 @@
 
 // Global Variables
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
 require('dotenv').config();
+const cors = require('cors');
+const mongoose = require('mongoose');
 const Profile = require('./models/profile');
 const Search = require('./models/search');
+const getWeather = require('./Weather');
+const getEvent = require('./Entertainment');
 
 // MongoDB connect
 mongoose.connect(process.env.DB_URL);
@@ -21,8 +23,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 3002;
 // Profile CRUD
 app.get('/profile', getProfile);
+app.get('/Weather', getWeather);
+app.get('/Entertainment', getEvent);
 
 // Profile CRUD Functions
 async function getProfile(request, response, next){
@@ -31,7 +36,6 @@ async function getProfile(request, response, next){
 }
 
 // Tests
-const PORT = process.env.PORT || 3002;
 
 app.get('/', (request, response) => {
   response.status(200).send('It works');
