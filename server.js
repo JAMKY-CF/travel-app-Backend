@@ -9,6 +9,7 @@ const Profile = require('./models/profile');
 const Search = require('./models/search');
 const getWeather = require('./Weather');
 const getEvent = require('./Entertainment');
+const verifyUser = require('./auth');
 
 // MongoDB connect
 mongoose.connect(process.env.DB_URL);
@@ -30,16 +31,29 @@ app.get('/Weather', getWeather);
 app.get('/Entertainment', getEvent);
 
 // Profile CRUD Functions
-async function getProfile(request, response, next){
-  let results = await Profile.find();
-  response.status(200).send(results);
+async function getProfile(request, response, next) {
+  // verify the user first before you allow them to make a request
+  verifyUser(req, async (err, user) => {
+    if (err) {
+      console.error(err);
+      response.send('invalid token');
+    } else {
+      
+      let results = await Profile.find();
+      response.status(200).send(results);
+    } 
+  });
 }
-
 // Tests
 
 app.get('/', (request, response) => {
   response.status(200).send('It works');
 });
+
+
+
+
+
 
 app.get('*', (request, response) => {
   response.status(404).send('Bad request');
