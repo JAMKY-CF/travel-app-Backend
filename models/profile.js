@@ -11,5 +11,6 @@ const profileSchema = new Schema ({
   password: {type: String, require: true },
 });
 
-module.exports = profileSchema;
+const profileModel = mongoose.model('Profile',profileSchema);
+module.exports = profileModel;
 

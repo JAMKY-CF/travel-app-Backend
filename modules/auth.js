@@ -14,24 +14,24 @@ const client = jwksClient({
 
 // need a getKey function to make the key readable
 //from npm jsonwebtoken docs: https://www.npmjs.com/package/jsonwebtoken 
-function getKey(header, callback){
-  client.getSigningKey(header.kid, function(err, key) {
+function getKey(header, callback) {
+  client.getSigningKey(header.kid, function (err, key) {
     var signingKey = key.publicKey || key.rsaPublicKey;
     callback(null, signingKey);
   });
 };
 
-  // function to verify user on our route has the right to make the request.
+// function to verify user on our route has the right to make the request.
 
-  function verifyUser(req, errorFirstOrUseTheUserCallbackFunction) {
-    try {
-      const token = req.headers.authorization.split(' ')[1];
-      console.log(token);
-      // from json web token docs:
-      jwt.verify(token, getKey, {}, errorFirstOrUseTheUserCallbackFunction);
-    } catch(error) {
-      errorFirstOrUseTheUserCallbackFunction('not authorized');
-    }
-  };
+function verifyUser(req, errorFirstOrUseTheUserCallbackFunction) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    console.log(token);
+    // from json web token docs:
+    jwt.verify(token, getKey, {}, errorFirstOrUseTheUserCallbackFunction);
+  } catch (error) {
+    errorFirstOrUseTheUserCallbackFunction('not authorized');
+  }
+};
 
-module.exports = verifyUser
+module.exports = verifyUser;

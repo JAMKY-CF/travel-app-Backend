@@ -38,7 +38,6 @@ async function getProfile(request, response, next) {
       console.error(err);
       response.send('invalid token');
     } else {
-
       let results = await Profile.find();
       response.status(200).send(results);
     } 
@@ -49,8 +48,6 @@ async function getProfile(request, response, next) {
 app.get('/', (request, response) => {
   response.status(200).send('It works');
 });
-
-
 
 
 
