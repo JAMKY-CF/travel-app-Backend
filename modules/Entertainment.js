@@ -7,7 +7,7 @@ async function getEvent (request, response, next){
   try{
     let cityName = request.query.searchQuery;
 
-    let url = `https://app.ticketmaster.com/discovery/v2/ attractions?apikey=${process.env.TM_API}&keyword=${cityName}`;
+    let url = `https://app.ticketmaster.com/discovery/v2/attractions?apikey=${process.env.TM_API}&keyword=${cityName}`;
     let eventInfo = await axios.get(url);
 
     let eventData = eventInfo.data._embedded.attractions.map(event => new Attraction(event));
