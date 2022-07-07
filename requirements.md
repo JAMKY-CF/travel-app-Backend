@@ -16,7 +16,7 @@ Why should we care about your product?
   - Provide desination photos, weather, and entertainment attractions and events at a given destination.
 
 - OUT - What will your product not do.
-  - No purchasing or booking. Only providing information.
+  - No purchasing or Profileing. Only providing information.
   - Only provides information for U.S. cities.
   - 
   - These should be features that you will make very clear from the beginning that you will not do during development. These should be limited and very few. Pick your battles wisely. This should only be 1 or 2 things. Example: My website will never turn into an IOS or Android app.
