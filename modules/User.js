@@ -68,7 +68,20 @@ async function postUser(request, response, next) {
 }
 
 
+//DELETE ROUTE (MUST HAVE PATH PARAMETER USING ':<VARIABLE>')
+app.delete('/users/:id', deleteBooks);
 
+async function deleteBooks(request, response, next) {
+  console.log('delete function fired')
+  let id = request.params.id;
+  try {
+    await Profile.findByIdAndDelete(id);
+    response.status(202).send('user deleted');
+  } catch(error) {
+    next(error);
+  } 
+  console.log(id);
+}
 
 
 
