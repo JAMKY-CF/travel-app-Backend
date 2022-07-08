@@ -5,12 +5,13 @@ const axios = require('axios');
 async function getEvent (request, response, next){
 
   try{
-    let cityName = request.query.searchQuery;
+    let cityName = request.query.cityName;
+    // let url = `${process.env.HARD_CODED_TM_API_URL}`
+    let url = `${process.env.TM_API}${process.env.TM_API_KEY}&StartDateTime=2022-07-08T07:00:00Z&size=5&sort=date,asc&city=${cityName}`;
 
-    let url = `https://app.ticketmaster.com/discovery/v2/attractions?apikey=${process.env.TM_API}&keyword=${cityName}`;
     let eventInfo = await axios.get(url);
-
-    let eventData = eventInfo.data._embedded.attractions.map(event => new Attraction(event));
+    console.log(eventInfo);
+    let eventData = eventInfo.data._embedded.events.map(event => new Attraction(event));
 
     response.send(eventData);
   }
@@ -23,9 +24,10 @@ async function getEvent (request, response, next){
 
 class Attraction {
   constructor(event) {
-    this.img = event.images.url;
+    // this.img = event.images.url;
     this.name = event.name;
     this.url = event.url;
+    this.dateTime = event.dates.start.dateTime;
   }
 }
 
