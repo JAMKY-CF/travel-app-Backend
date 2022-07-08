@@ -60,6 +60,31 @@ async function getUserByEmail(request, response, next) {
   }
 }
 
+//PUT USER (UPDATE USER DATA)
+app.put('/users/:email', updateAndReplaceUser);
+
+async function updateAndReplaceUser(request,response){
+  let email=request.params.email
+  let newBookData=request.body
+  try {
+    let query= { email: email };
+    let updatedBook= await Profile.findOneAndUpdate(query , newBookData, {new:true, overwrite:true});
+    response.status(200).send(updatedBook);
+  } catch (error) {
+    response.status(500).send(error.message);
+  }
+}
+
+// async function putUser(request,response){
+//   let id=request.params.id
+//   try {
+//     let newBookData=request.body;
+//     let updatedBook= await Profile.findByIdAndUpdate(id , newBookData, {new:true, overwrite:true});
+//     response.status(200).send(updatedBook);
+//   } catch (error) {
+//     response.status(500).send(error.message);
+//   }
+// }
 
 //POST USER (CREATE NEW USERS)
 app.post('/users', postUser);
@@ -74,7 +99,20 @@ async function postUser(request, response, next) {
   }
 }
 
+//DELETE PROFILE (MUST HAVE PATH PARAMETER USING ':<VARIABLE>')
+app.delete('/users/:email', deleteUser);
 
+async function deleteUser(request, response, next) {
+  console.log('deleting a user...')
+  let email = request.params.email;
+  try {
+    await Profile.deleteOne({ email: email });
+    response.status(202).send('User deleted');
+  } catch(error) {
+    next(error);
+  } 
+  console.log(email);
+}
 
 // Tests
 
