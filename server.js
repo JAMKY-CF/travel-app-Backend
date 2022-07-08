@@ -51,7 +51,7 @@ app.get('/users/:email', getUserByEmail);
 
 async function getUserByEmail(request, response, next) {
   try {
-    console.log('Testing function fire');
+    // console.log('Testing function fire');
     let email = request.params.email;
     let results = await Profile.findOne({ email: email });
     response.status(200).send(results);
@@ -90,7 +90,7 @@ async function updateAndReplaceUser(request,response){
 app.post('/users', postUser);
 
 async function postUser(request, response, next) {
-  console.log(request.body);
+  // console.log(request.body);
   try {
     let createdUser = await Profile.create(request.body);
     response.status(201).send(createdUser);
@@ -103,7 +103,7 @@ async function postUser(request, response, next) {
 app.delete('/users/:email', deleteUser);
 
 async function deleteUser(request, response, next) {
-  console.log('deleting a user...')
+  // console.log('deleting a user...')
   let email = request.params.email;
   try {
     await Profile.deleteOne({ email: email });
@@ -111,7 +111,7 @@ async function deleteUser(request, response, next) {
   } catch(error) {
     next(error);
   } 
-  console.log(email);
+  // console.log(email);
 }
 
 ////////////   SEARCH CRUD    //////////
@@ -170,7 +170,7 @@ async function getSearches(request, response, next) {
 app.post('/search', postSearch);
 
 async function postSearch(request, response, next) {
-  console.log(request.body);
+  console.log('request body: ',request.body);
   try {
     let createdSearch = await Search.create(request.body);
     response.status(201).send(createdSearch);
@@ -191,7 +191,7 @@ async function deleteSearch(request, response, next) {
   } catch(error) {
     next(error);
   } 
-  console.log(email);
+  // console.log(email);
 }
 
 // Tests

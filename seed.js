@@ -15,7 +15,7 @@ async function seed() {
     age: '23',
   });
   
-  console.log('Test was added');
+  // console.log('Test was added');
 
   // await Profile.create({
   //   title: 'Harry Potter',
