@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 3002;
-// Profile CRUD
+/////////    Profile CRUD   /////////
 app.get('/profile', getProfile);
 app.get('/Weather', getWeather);
 app.get('/Entertainment', getEvent);
@@ -108,6 +108,86 @@ async function deleteUser(request, response, next) {
   try {
     await Profile.deleteOne({ email: email });
     response.status(202).send('User deleted');
+  } catch(error) {
+    next(error);
+  } 
+  console.log(email);
+}
+
+////////////   SEARCH CRUD    //////////
+
+//GET SEARCH BY Location
+// app.get('/users/:email', getUserByEmail);
+
+// async function getUserByEmail(request, response, next) {
+//   try {
+//     console.log('Testing function fire');
+//     let email = request.params.email;
+//     let results = await Profile.findOne({ email: email });
+//     response.status(200).send(results);
+//   } catch (error) {
+//     next(error);
+//   }
+// }
+
+//PUT USER (UPDATE USER DATA)
+// app.put('/users/:email', updateAndReplaceUser);
+
+// async function updateAndReplaceUser(request,response){
+//   let email=request.params.email;
+//   let newUserData=request.body;
+//   try {
+//     let query= { email: email };
+//     let updatedUser= await Profile.findOneAndReplace(query , newUserData, {new:true, overwrite:true});
+//     response.status(200).send(updatedUser);
+//   } catch (error) {
+//     response.status(500).send(error.message);
+//   }
+// }
+
+
+////PUT FUNCTION FROM CAN OF BOOKS
+// async function putUser(request,response){
+//   let id=request.params.id
+//   try {
+//     let newBookData=request.body;
+//     let updatedBook= await Profile.findByIdAndUpdate(id , newBookData, {new:true, overwrite:true});
+//     response.status(200).send(updatedBook);
+//   } catch (error) {
+//     response.status(500).send(error.message);
+//   }
+// }
+
+// GET SEARCHES
+app.get('/search', getSearches);
+
+async function getSearches(request, response, next) {
+  let results = await Search.find();
+  response.status(200).send(results);
+}
+
+//POST SEARCH (CREATE NEW SEARCH OBJECTS FOR SEARCH HISTORY)
+app.post('/search', postSearch);
+
+async function postSearch(request, response, next) {
+  console.log(request.body);
+  try {
+    let createdSearch = await Search.create(request.body);
+    response.status(201).send(createdSearch);
+  } catch (error) {
+    next (error);
+  }
+}
+
+//DELETE PROFILE (MUST HAVE PATH PARAMETER USING ':<VARIABLE>')
+app.delete('/search/:id', deleteSearch);
+
+async function deleteSearch(request, response, next) {
+  console.log('deleting a search...')
+  let id = request.params.id;
+  try {
+    await Search.findByIdAndDelete({ id: id });
+    response.status(202).send('Search deleted');
   } catch(error) {
     next(error);
   } 
