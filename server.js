@@ -191,7 +191,7 @@ async function deleteSearch(request, response, next) {
   } catch(error) {
     next(error);
   } 
-  console.log(email);
+  // console.log(email);
 }
 
 // Tests

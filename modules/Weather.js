@@ -13,20 +13,32 @@ async function getWeather(request, response, next) {
     let lat = resultingObj.lat;
     let lon = resultingObj.lon;
     console.log('Resulting Object: ',resultingObj);
-    let url = `http://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API}&lang=en&units=I&days=5&lat=${lat}&lon=${lon}`;
-    let weatherInfo = await axios.get(url);
 
-    let weatherData = weatherInfo.data.data.map(skies => new Weather(skies));
+    let weatherData = await handleGetWeather(lat, lon);
 
     response.send(weatherData);
   }
   catch (error) {
-
+    
     handleError(error, response);
     next(error);
   }
 }
 
+async function handleGetWeather(lat, lon) {
+
+  try {
+    
+    let url = `http://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API}&lang=en&units=I&days=5&lat=${lat}&lon=${lon}`;
+    let weatherInfo = await axios.get(url);
+    console.log(weatherInfo);
+    let weatherData = weatherInfo.data.data.map(skies => new Weather(skies));
+    return weatherData;
+
+  } catch(error) {
+    console.log(error.message);
+  }
+}
 
 class Weather {
   constructor(skies) {
