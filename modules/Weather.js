@@ -21,6 +21,7 @@ async function getWeather(request, response, next) {
     response.send(weatherData);
   }
   catch (error) {
+
     handleError(error, response);
     next(error);
   }

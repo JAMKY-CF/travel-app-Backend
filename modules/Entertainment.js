@@ -13,6 +13,7 @@ async function getEvent (request, response, next){
     console.log(eventInfo);
     let eventData = eventInfo.data._embedded.events.map(event => new Attraction(event));
 
+
     response.send(eventData);
   }
   catch(error){
