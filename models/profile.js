@@ -10,6 +10,8 @@ const profileSchema = new Schema ({
   picture: {type: String, require: false },
   location: {type: String, require: false },
   age: {type: String, require: false },
+
+
 });
 
 const profileModel = mongoose.model('Profile', profileSchema);
