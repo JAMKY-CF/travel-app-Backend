@@ -24,7 +24,7 @@ async function getEvent (request, response, next){
 
 class Attraction {
   constructor(event) {
-    // this.img = event.images.url;
+    this.img_url = event.images[0].url;
     this.name = event.name;
     this.url = event.url;
     this.dateTime = event.dates.start.dateTime;
