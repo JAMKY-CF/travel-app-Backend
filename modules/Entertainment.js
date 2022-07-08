@@ -10,7 +10,7 @@ async function getEvent (request, response, next){
     let url = `${process.env.TM_API}${process.env.TM_API_KEY}&StartDateTime=2022-07-08T07:00:00Z&size=5&sort=date,asc&city=${cityName}`;
 
     let eventInfo = await axios.get(url);
-    console.log(eventInfo);
+    console.log('event info ', eventInfo);
     let eventData = eventInfo.data._embedded.events.map(event => new Attraction(event));
 
 

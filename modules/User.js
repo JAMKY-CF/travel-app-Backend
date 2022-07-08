@@ -37,7 +37,7 @@ app.get('/users/email', getUserByEmail);
 
 async function getUserByEmail(request, response, next) {
   try {
-    console.log('Testing function fire');
+    // console.log('Testing function fire');
     let email = request.query.email;
     let results = await Profile.findOne({ email: email });
     response.status(200).send(results);
@@ -58,7 +58,7 @@ async function getUserByEmail(request, response, next) {
 app.post('/users', postUser);
 
 async function postUser(request, response, next) {
-  console.log(request.body);
+  // console.log(request.body);
   try {
     let createdUser = await Profile.create(request.body);
     response.status(201).send(createdUser);
@@ -72,7 +72,7 @@ async function postUser(request, response, next) {
 app.delete('/users/:id', deleteBooks);
 
 async function deleteBooks(request, response, next) {
-  console.log('delete function fired')
+  // console.log('delete function fired')
   let id = request.params.id;
   try {
     await Profile.findByIdAndDelete(id);
@@ -80,7 +80,7 @@ async function deleteBooks(request, response, next) {
   } catch(error) {
     next(error);
   } 
-  console.log(id);
+  // console.log(id);
 }
 
 
