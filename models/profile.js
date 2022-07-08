@@ -7,9 +7,9 @@ const { Schema } = mongoose;
 const profileSchema = new Schema ({
   name: {type: String, require: true },
   email: {type: String, require: true }, 
-  image: {type: String, require: false },
-  phone: {type: String, require: false },
-  age: {type: String, require: false },
+  picture: {type: String, require: false },
+  location: {type: String, require: false },
+  age: {type: String, require: true },
 });
 
 const profileModel = mongoose.model('Profile',profileSchema);
