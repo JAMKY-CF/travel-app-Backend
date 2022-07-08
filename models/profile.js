@@ -9,10 +9,12 @@ const profileSchema = new Schema ({
   email: {type: String, require: true }, 
   picture: {type: String, require: false },
   location: {type: String, require: false },
-  age: {type: String, require: true },
+  age: {type: String, require: false },
+
+
 });
 
-const profileModel = mongoose.model('Profile',profileSchema);
+const profileModel = mongoose.model('Profile', profileSchema);
 
 module.exports = profileModel;
 
