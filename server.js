@@ -64,12 +64,12 @@ async function getUserByEmail(request, response, next) {
 app.put('/users/:email', updateAndReplaceUser);
 
 async function updateAndReplaceUser(request,response){
-  let email=request.params.email
-  let newBookData=request.body
+  let email=request.params.email;
+  let newUserData=request.body;
   try {
     let query= { email: email };
-    let updatedBook= await Profile.findOneAndUpdate(query , newBookData, {new:true, overwrite:true});
-    response.status(200).send(updatedBook);
+    let updatedUser= await Profile.findOneAndReplace(query , newUserData, {new:true, overwrite:true});
+    response.status(200).send(updatedUser);
   } catch (error) {
     response.status(500).send(error.message);
   }
