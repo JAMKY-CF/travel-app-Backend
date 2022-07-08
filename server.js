@@ -7,8 +7,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const Profile = require('./models/profile');
 const Search = require('./models/search');
-const getWeather = require('./Weather');
-const getEvent = require('./Entertainment');
+const getWeather = require('./modules/Weather');
+const getEvent = require('./modules/Entertainment');
 const verifyUser = require('./modules/auth');
 
 // MongoDB connect
