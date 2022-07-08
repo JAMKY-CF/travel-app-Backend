@@ -43,6 +43,39 @@ async function getProfile(request, response, next) {
     } 
   });
 }
+
+
+
+//GET USER BY EMAIL
+app.get('/users/:email', getUserByEmail);
+
+async function getUserByEmail(request, response, next) {
+  try {
+    console.log('Testing function fire');
+    let email = request.params.email;
+    let results = await Profile.findOne({ email: email });
+    response.status(200).send(results);
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+//POST USER (CREATE NEW USERS)
+app.post('/users', postUser);
+
+async function postUser(request, response, next) {
+  console.log(request.body);
+  try {
+    let createdUser = await Profile.create(request.body);
+    response.status(201).send(createdUser);
+  } catch (error) {
+    next (error);
+  }
+}
+
+
+
 // Tests
 
 app.get('/', (request, response) => {
